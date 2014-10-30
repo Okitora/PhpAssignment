@@ -8,14 +8,16 @@
         <th>Code</th>
         <th>Name</th>
         <th>Description</th>
+        <th>Category</th>
         <th>Picture</th>
     </tr>
     {places}
     <tr>
         <td>{code}</td>
         <td>{name}</td>
-        <td class="span3">{description}</td>
-        <td class="span5 offset1"><img src="/data/{pic}" /></td>
+        <td class="span2">{description}</td>
+        <td>{category}</td>
+        <td class="span4 offset1"><img src="/data/{pic}" /></td>
     </tr>
     {/places}
 </table>

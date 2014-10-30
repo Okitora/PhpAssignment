@@ -28,11 +28,14 @@ class Admin extends Application {
         //place every attraction into places array.
         foreach ($source as $record) {
            //
-            $places[] = array('name' => $record['name'], 
-                'pic' => $record['pic'], 
+            $places[] = array(
+                'code'        => $record['code'],
+                'name'        => $record['name'], 
+                'pic'         => $record['pic'], 
                 'description' => $record['description'],
-                'href' => $record['where'],
-                );
+                'category'    => $record['category'],
+                'href'        => $record['where'],
+            );
         
             
         }
