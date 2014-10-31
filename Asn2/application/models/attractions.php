@@ -53,6 +53,19 @@ class Attractions extends CI_Model {
         return null;
     }
 
+    // retrieve a single attraction
+    public function need($which) {
+        
+    // iterate over the data until we find the one we want
+        foreach ($this->data as $record)
+        {
+            if ($record['code'] == $which)
+            {
+                return $record;
+            }
+        }
+        return null;
+    }
     // retrieve all of the attraction
     public function all() {
         return $this->data;
@@ -105,5 +118,6 @@ class Attractions extends CI_Model {
         
         return $list;
     }
+    
 
 }
