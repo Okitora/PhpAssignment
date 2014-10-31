@@ -51,7 +51,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
-
+//uncomment line below when database is done... in localhost/phpmyadmin
 //$autoload['libraries'] = array('parser', 'database', 'session');
 $autoload['libraries'] = array('parser', 'session');
 /*

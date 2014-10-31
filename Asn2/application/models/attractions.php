@@ -3,7 +3,7 @@
 /**
  * This is a "CMS" model for quotes, but with bogus hard-coded data
  *
- * @author jim
+ * @author Sharon
  */
 class Attractions extends CI_Model {
 
@@ -37,6 +37,7 @@ class Attractions extends CI_Model {
     // Constructor
     public function __construct() {
         parent::__construct();
+        //parent::__construct('attractions', 'code');
     }
 
     // retrieve a single attraction

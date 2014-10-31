@@ -144,7 +144,11 @@ class Admin extends Application {
         if (count($this->errors) < 1) 
         {
             // store the merged record into the model
-            $this->attractions->update($record);
+            /* uncomment next line when there is db in localhost/phpmyadmin
+            right now no update takes place */
+            
+            //$this->attractions->update($record);
+            
             // remove the item record from the session container
             $this->session->unset_userdata('item');
             redirect('/admin/editlist');
