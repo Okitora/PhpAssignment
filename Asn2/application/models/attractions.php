@@ -40,10 +40,22 @@ class Attractions extends MY_Model {
     }
 
     // retrieve a single attraction
+    /*
     public function get($which) {
-        
+        $CI = & get_instance();
+        if ($CI->orderitems->exists($num, $code)) {
+            $record = $CI->orderitems->get($num, $code);
+            $record->quantity++;
+            $CI->orderitems->update($record);
+        } else {
+            $record = $CI->orderitems->create();
+            $record->order = $num;
+            $record->item = $code;
+            $record->quantity = 1;
+            $CI->orderitems->add($record);
+        }
     // iterate over the data until we find the one we want
-        foreach ($this->data as $record)
+        foreach ($CI->attraction->exists($which) as $record)
         {
             if ($record['attr_id'] == $which)
             {
@@ -70,7 +82,7 @@ class Attractions extends MY_Model {
     public function all() {
         return $this->data;
     }
-
+*/
     // retrieve the first attraction
     public function first() {
         return $this->data['kkc'];
@@ -78,30 +90,49 @@ class Attractions extends MY_Model {
 
     // retrieve the last attraction
     public function last() {
-        $index = count($this->data) - 1;
-        return $this->data[$index];
+        $CI = & get_instance();
+        
+        $index = count($CI->attraction) - 1;
+        return $CI->attraction[$index];
     }
     
     //retrieve newest attraction
+    
     public function newest()
     {
+        $CI = & get_instance();
+        
         //variable determining if it has the newest date
         $newest = 0;
         //temporary file to store newest record
         $new = 0;
-        foreach($this->data as $record)
+        /*
+        foreach($CI->attraction as $record)
         {
             //if the record's date is newer than the current, switch.
             if($record['date'] > $newest)
             {
-                $newest = $record;
+                $newest = $record['date'];
                 $new = $record;
+            }
+        }
+        */
+        $items = $CI->attractions->all();
+        if (count($items) > 0)
+        {
+            foreach ($items as $item) {
+                $date = $CI->attractions->get($item->date);
+                if($date > $newest)
+                {
+                    $new = $item;
+                    $newest = $date;
+                }
             }
         }
         
         return $new;
     }
-    
+    /*
     public function allCategory($which)
     {
         //array we send back 
@@ -119,5 +150,5 @@ class Attractions extends MY_Model {
         return $list;
     }
     
-
+*/
 }
