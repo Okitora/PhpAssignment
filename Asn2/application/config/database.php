@@ -49,9 +49,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'attractions';
+$db['default']['username'] = 'bcitx762_d08';
+$db['default']['password'] = 'A^0x%va{$[53';
+$db['default']['database'] = 'bcitx762_d08';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
