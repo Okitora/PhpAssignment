@@ -68,9 +68,9 @@ CREATE TABLE IF NOT EXISTS `attr_image` (
 -- images in /data folder in webapp
 INSERT INTO `main_cat` (`main_id`, `main_name`, `image_name`) VALUES
 ('e', 'entertainment'	,       'Avatar480.jpg'),
-('f', 'family fun'		, 'Rarotongan-Beach-Resort-Spa-13_Family-Fun1.jpg'),
-('s', 'shopping'		, 'rotorua-souvenir-shops-6-out-of-nz.jpg'),
-('t', 'eco tourism'		, 'NewZealand-Urupukapuka Island-XL.jpg'),
+('f', 'family fun'	, 'Rarotongan-Beach-Resort-.jpg'),
+('s', 'shopping'	, 'rotorua-souvenir-shops.jpg'),
+('t', 'eco tourism'	, 'NewZealand-Urupukapuka.jpg'),
 ('w', 'sight seeing'	,       '7184514_660x250.jpg');
 
 -- images in /data folder in webapp
