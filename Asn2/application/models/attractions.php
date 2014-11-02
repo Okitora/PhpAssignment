@@ -5,7 +5,7 @@
  *
  * @author Sharon
  */
-class Attractions extends CI_Model {
+class Attractions extends MY_Model {
 
     // The data comes from http://www.quotery.com/top-100-funny-quotes-of-all-time/?PageSpeed=noscript
     
@@ -36,8 +36,7 @@ class Attractions extends CI_Model {
 
     // Constructor
     public function __construct() {
-        parent::__construct();
-        //parent::__construct('attractions', 'code');
+        parent::__construct('attraction', 'attr_id');
     }
 
     // retrieve a single attraction
@@ -46,7 +45,7 @@ class Attractions extends CI_Model {
     // iterate over the data until we find the one we want
         foreach ($this->data as $record)
         {
-            if ($record['name'] == $which)
+            if ($record['attr_id'] == $which)
             {
                 return $record;
             }
@@ -74,7 +73,7 @@ class Attractions extends CI_Model {
 
     // retrieve the first attraction
     public function first() {
-        return $this->data['glacier'];
+        return $this->data['kkc'];
     }
 
     // retrieve the last attraction
