@@ -24,19 +24,11 @@ class Main extends Application {
         // build the list of places, to pass on to our view
         $source = $this->attractions->newest();
         
-        //$this->data = array_merge($this->data, $source); //merges quote with this data
-        $places = array();
         
-        //new attraction into array
-            $places[] = array(
-                'name' => $source['attr_name'], 
-                'pic' => $source->pic, 
-                'description' => $source['description'],
-                'href' => '/');
-            
-        
-        //send the places array to our data
-        $this->data['places'] = $places;
+        //send the attributes to our newest view
+        $this->data['name'] = $source->attr_name;
+        $this->data['pic'] = $source->image_name;
+        $this->data['description'] = $source->description;
 
         $this->render();
     }

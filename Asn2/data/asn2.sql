@@ -154,7 +154,7 @@ Located 49km off the coast of Whakatane, New Zealand, White Island Tours offers 
 We make frequent trips into the field as guides and tour leaders as well as researching new locations. 
 Our excellent network of contacts throughout NZ ensures we have the most up-to-date information about NZs special birds and where to find them. 
 Our policy is to make sure visitors enjoy our country, and while birds (and birding) may be the focus, there is a great deal to see and experience besides. ',
-14592224812, 'kwt.jpg'),
+1459222481, 'kwt.jpg'),
 
 ('t', 'yc', 'tv'	, 'Te Vaka'				, '09 938 7802', '*****'
 	, 'Te Vaka is a modern powerful, sloop rigged, high performance off shore cruising yacht based in the Bay of Islands. 
