@@ -112,18 +112,18 @@ class Admin extends Application {
         
         // we need to construct pretty editing fields using the formfields helper
         $this->load->helper('formfields');
-        $this->data['fid'] = makeTextField('Attraction ID', 'id', $item_record['attr_id'], "item identifier ... cannot be changed", 10, 25, true);
-        $this->data['fname'] = makeTextField('Name', 'name', $item_record['attr_name'], "Name your customers are comfortable with");
+        $this->data['fid'] = makeTextField('Attraction ID', 'attr_id', $item_record['attr_id'], "item identifier ... cannot be changed", 10, 25, true);
+        $this->data['fname'] = makeTextField('Name', 'attr_name', $item_record['attr_name'], "Name your customers are comfortable with");
         $this->data['fdescription'] = makeTextArea('Description', 'description', $item_record['description'], 'This is a long-winded and humorous caption that pops up if the visitor hovers over a menu item picture too long.');
         
         $options = array('f' => 'Family Fun', 't' => 'Eco Tourism', 's' => 'Shopping', 'e' => 'Entertainment', 'w' => 'SightSeeing');
-        $this->data['fmain'] = makeComboField('Main category', 'main', $item_record['main_id'], $options, "Main category. Used to group similar things by column for ordering");
+        $this->data['fmain'] = makeComboField('Main category', 'main_id', $item_record['main_id'], $options, "Main category. Used to group similar things by column for ordering");
         
         $options2 = array('ra' => 'Racing', 'nc' => 'Night Club', 'st' => 'Stadium', 
             'mo' => 'Movie', 'ng' => 'Nature Garden', 'tp' => 'Theme Park', 'sm' => 'Shopping Mall',
             'df' => 'Duty Free', 'ts' => 'Tourist Shops', 'vo' => 'volcanos', 'bw' => 'bird watching',
             'yc' => 'Yacht Cruising', 'tr' => 'Trails', 'wt' => 'Walking Tracks', 'cw' => 'Coast Walks');
-        $this->data['fsub'] = makeComboField('Sub category', 'sub', $item_record['sub_id'], $options2, "Sub category. Used to group similar things by column for ordering");
+        $this->data['fsub'] = makeComboField('Sub category', 'sub_id', $item_record['sub_id'], $options2, "Sub category. Used to group similar things by column for ordering");
         $this->data['fcontact'] = makeTextField('Contact', 'contact', $item_record['contact'], 'This is the contact info for the attraction');
         $this->data['fdate'] = makeTextArea('Date', 'date', $item_record['date'], 'Time stamp of when the attraction was added');
         $this->data['fpicture'] = showImage('Attraction picture shown at ordering time', $item_record['image_name']);
@@ -146,7 +146,7 @@ class Admin extends Application {
             $this->errors[] = 'An item has to have a description!';
         }
 
-        $cat = $fields['main'];
+        $cat = $fields['main_id'];
         if (($cat != 'e') && ($cat != 'f') && ($cat != 'w') && ($cat != 't') && ($cat != 's')) 
         {
             $this->errors[] = 'Your category has to be one of m, d or c :(';
