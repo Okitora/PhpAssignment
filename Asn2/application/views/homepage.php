@@ -1,10 +1,10 @@
+{places}
 <div class="header">
     <br />
-    <h2>Category: Sceneries</h2>
+    <h2>Category: {main_id}</h2>
     <br />
 </div>
 <div class="row">
-    {places}
     <div class="span11">
         <h3>{name}</h3>
     </div>
@@ -18,6 +18,6 @@
         <p>---------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
         <br/>
     </div>
- {/places}
     
 </div>
+{/places}
