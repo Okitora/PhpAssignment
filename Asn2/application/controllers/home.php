@@ -48,6 +48,7 @@ class Home extends Application {
     function sublist($code)
     {
         $this->data['pagebody'] = 'sublist';
+        
         //get all sub categories within the main category
         $source = $this->sub->some('main_id' , $code);
         $name = $this->categories->get($code);
@@ -73,51 +74,22 @@ class Home extends Application {
         
         $this->render();
     }
-    function list2() {
+    function destination($id) {
         $this->data['pagebody'] = 'homepage';    // this is the view we want shown
         
         // build the list of places, to pass on to our view
-        $source = $this->attractions->all();    //get all the attractions from DB
+        $source = $this->attractions->some('sub_id', $id);    //get all the attractions from DB
         $places = array();
         
         //place every attraction into places array.
-        foreach ($source as $record) {
-           $main_id = $record->main_id;
-           
-           if($main_id == 'w')
-           {
-               $main_id = 'Sight Seeing';
-           }
-           else if($main_id == 't')
-           {
-               $main_id = 'Eco Tourism';
-           }
-           else if($main_id == 's')
-           {
-               $main_id = 'Shopping';
-           }
-           else if($main_id == 'f')
-           {
-               $main_id = 'Family Fun';
-           }
-           else if($main_id == 'e')
-           {
-               $main_id = 'Entertainment';
-           }
-           else
-           {
-               $main_id = "Deal with it";
-           }
-            $places[] = array(
-                
+        foreach($source as $record)
+        {
+            $this1 = array(
                 'name' => $record->attr_name, 
-                'main_id' => $main_id,
-                //'pic' => $record['pic'], 
                 'description' => $record->description,
-                //'href' => $record->where,
-                );
-        
-            
+                'pic'   => $record->image_name
+            );
+            $places[] = $this1;
         }
         
         //send places array to our data
