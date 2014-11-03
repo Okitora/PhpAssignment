@@ -29,12 +29,14 @@ class Admin extends Application {
         foreach ($source as $record) {
            //
             $places[] = array(
-                'code'        => $record['code'],
-                'name'        => $record['name'], 
-                'pic'         => $record['pic'], 
-                'description' => $record['description'],
-                'category'    => $record['category'],
-                'href'        => $record['where'],
+                'id'          => $record->attr_id,
+                'name'        => $record->attr_name, 
+                'pic'         => $record->image_name, 
+                'description' => $record->description,
+                'main'    => $record->main_id,
+                'sub'         => $record->sub_id,
+                'contact'     => $record->contact, 
+                'date'        => $record->date,
             );
         
             
@@ -54,14 +56,25 @@ class Admin extends Application {
         $source = $this->attractions->all();
         $items = '';
         
-        foreach ($source as $record) 
-        {
-            $items .= $this->parser->parse('edit2', $record, true);
-            
-        }      
+        //place every attraction into places array.
+        foreach ($source as $record) {
+           //
+            $places[] = array(
+                'id'          => $record->attr_id,
+                'name'        => $record->attr_name, 
+                'pic'         => $record->image_name, 
+                'description' => $record->description,
+                'main'        => $record->main_id,
+                'sub'         => $record->sub_id,
+                'contact'     => $record->contact, 
+                'date'        => $record->date,
+            );
         
-        //display nested view
-        $this->data['themeat'] = $items;
+            
+        }
+        
+        //send places array to our data
+        $this->data['places'] = $places;
         
         $this->render();
     }
@@ -88,7 +101,7 @@ class Admin extends Application {
         if ($item_record == null) {
             
             // get the item record from the items model
-            $item_record = (array) $this->attractions->need($which);
+            $item_record = (array) $this->attractions->get($which);
             
             // save it as the “item” session object
             $this->session->set_userdata('item', $item_record);
@@ -99,13 +112,21 @@ class Admin extends Application {
         
         // we need to construct pretty editing fields using the formfields helper
         $this->load->helper('formfields');
-        $this->data['fcode'] = makeTextField('Item Code', 'code', $item_record['code'], "item identifier ... cannot be changed", 10, 25, true);
-        $this->data['fname'] = makeTextField('Name', 'name', $item_record['name'], "Name your customers are comfortable with");
+        $this->data['fid'] = makeTextField('Attraction ID', 'id', $item_record['attr_id'], "item identifier ... cannot be changed", 10, 25, true);
+        $this->data['fname'] = makeTextField('Name', 'name', $item_record['attr_name'], "Name your customers are comfortable with");
         $this->data['fdescription'] = makeTextArea('Description', 'description', $item_record['description'], 'This is a long-winded and humorous caption that pops up if the visitor hovers over a menu item picture too long.');
         
-        $options = array('m' => 'Meal', 'd' => 'Drink', 's' => 'Sweet');
-        $this->data['fcategory'] = makeComboField('Menu category', 'category', $item_record['category'], $options, "Menu category. Used to group similar things by column for ordering");
-        $this->data['fpicture'] = showImage('Menu picture shown at ordering time', $item_record['pic']);
+        $options = array('f' => 'Family Fun', 't' => 'Eco Tourism', 's' => 'Shopping', 'e' => 'Entertainment', 'w' => 'SightSeeing');
+        $this->data['fmain'] = makeComboField('Main category', 'main', $item_record['main_id'], $options, "Main category. Used to group similar things by column for ordering");
+        
+        $options2 = array('ra' => 'Racing', 'nc' => 'Night Club', 'st' => 'Stadium', 
+            'mo' => 'Movie', 'ng' => 'Nature Garden', 'tp' => 'Theme Park', 'sm' => 'Shopping Mall',
+            'df' => 'Duty Free', 'ts' => 'Tourist Shops', 'vo' => 'volcanos', 'bw' => 'bird watching',
+            'yc' => 'Yacht Cruising', 'tr' => 'Trails', 'wt' => 'Walking Tracks', 'cw' => 'Coast Walks');
+        $this->data['fsub'] = makeComboField('Sub category', 'sub', $item_record['sub_id'], $options2, "Sub category. Used to group similar things by column for ordering");
+        $this->data['fcontact'] = makeTextField('Contact', 'contact', $item_record['contact'], 'This is the contact info for the attraction');
+        $this->data['fdate'] = makeTextArea('Date', 'date', $item_record['date'], 'Time stamp of when the attraction was added');
+        $this->data['fpicture'] = showImage('Attraction picture shown at ordering time', $item_record['image_name']);
         $this->data['fsubmit'] = makeSubmitButton('Post Changes', 'Do you feel lucky?');
         
         $this->render();
@@ -116,7 +137,7 @@ class Admin extends Application {
         $fields = $this->input->post(); // gives us an associative array
         
         // test the incoming fields
-        if (strlen($fields['name']) < 1)
+        if (strlen($fields['attr_name']) < 1)
         {
             $this->errors[] = 'An item has to have a name!';
         }
@@ -125,11 +146,22 @@ class Admin extends Application {
             $this->errors[] = 'An item has to have a description!';
         }
 
-        $cat = $fields['category'];
-        if (($cat != 'm') && ($cat != 'd') && ($cat != 'w')) 
+        $cat = $fields['main'];
+        if (($cat != 'e') && ($cat != 'f') && ($cat != 'w') && ($cat != 't') && ($cat != 's')) 
         {
             $this->errors[] = 'Your category has to be one of m, d or c :(';
         }
+        
+        if (strlen($fields['contact']) < 1) 
+        {
+            $this->errors[] = 'An item has to have a contact!';
+        }
+        
+        if (strlen($fields['date']) < 1) 
+        {
+            $this->errors[] = 'An item has to have a date!';
+        }
+        
 
         // get the session item record
         $record = $this->session->userdata('item');
@@ -147,7 +179,7 @@ class Admin extends Application {
             /* uncomment next line when there is db in localhost/phpmyadmin
             right now no update takes place */
             
-            //$this->attractions->update($record);
+            $this->attractions->update($record);
             
             // remove the item record from the session container
             $this->session->unset_userdata('item');

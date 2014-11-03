@@ -5,19 +5,25 @@
 </p>
 <table class="table">
     <tr>
-        <th>Code</th>
+        <th>ID</th>
         <th>Name</th>
         <th>Description</th>
-        <th>Category</th>
+        <th>Main Category</th>
+        <th>Sub Category</th>
+        <th>Contact</th>
+        <th>Date</th>
         <th>Picture</th>
     </tr>
     {places}
     <tr>
-        <td>{code}</td>
+        <td>{id}</td>
         <td>{name}</td>
         <td class="span2">{description}</td>
-        <td>{category}</td>
-        <td class="span4 offset1"><img src="/data/{pic}" /></td>
+        <td>{main}</td>
+        <td>{sub}</td>
+        <td>{contact}</td>
+        <td>{date}</td>
+        <td class="span4 offset1"><img src="/data/{pic}" title="{id}"/></td>
     </tr>
     {/places}
 </table>

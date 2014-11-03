@@ -1,9 +1,12 @@
 <!-- form to edit a menu item -->
-<form action="/admin/post3/{code}" method="post">
-    {fcode}
+<form action="/admin/post3/{id}" method="post">
+    {fid}
     {fname}
     {fdescription}
-    {fcategory}
+    {fmain}
+    {fsub}
+    {fcontact}
+    {fdate}
     {fpicture}
     {fsubmit}
 </form>

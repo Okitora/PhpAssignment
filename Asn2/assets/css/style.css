@@ -34,6 +34,12 @@ h1 {
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     text-align: center;
 }
+td {
+    background-color: #FFFAF0;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+    opacity:.8;
+}
 
 .span12
 {
@@ -55,6 +61,12 @@ h1 {
 
 .span4{
     text-align: center;
+    background-color: #FFFAF0;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+    opacity:.8;
+}
+form{
     background-color: #FFFAF0;
     -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
     filter: alpha(opacity=80);
