@@ -73,7 +73,7 @@ INSERT INTO `sub_cat` (`main_id`, `sub_id`, `sub_name`, `image_name`) VALUES
 
 ('f', 'mo'	, 'movies',             'Auckland Civic Theatre.jpg'),
 ('f', 'ng'	, 'nature garden'	, '326350-svetik.jpg'),
-('f', 'tp'	, 'theme park'		, 'Wet’nWild-Water-World.jpg'),
+('f', 'tp'	, 'theme park'		, 'WetnWild-Water-World.jpg'),
 
 ('s', 'sm'	, 'shopping mall'	, 'shopping-mall-723514.jpg'),
 ('s', 'df'	, 'duty free'		, 'duty-free-stores.jpg'),
