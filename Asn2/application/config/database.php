@@ -45,14 +45,9 @@
 | the active record class
 */
 
-//setup for jim's server
-//$active_group = 'default';
-//$active_record = TRUE;
-//$db['default']['hostname'] = '';
-//$db['default']['username'] = 'bcitx762_d08';
-//$db['default']['password'] = 'A^0x%va{$[53';
+$active_group = 'default';
+$active_record = TRUE;
 
-//for locally
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
